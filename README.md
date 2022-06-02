@@ -1,8 +1,9 @@
 # IntelliJ Naruto Progress Bar
 
-This is a plugin for [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/) (And other compatible IDEs), which replaces your progress bars with
-a (random) shonobi from Naruto anime and replaces loading spinners with spinning shurikens. Preferences are located
-under `Preferences > Appearance & Behaviour > Naruto Progress`.
+This is [a plugin](https://plugins.jetbrains.com/plugin/19302-naruto-progress/versions)
+for [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/) (And other compatible IDEs), which replaces your progress
+bars with a (random) shonobi from Naruto anime and replaces loading spinners with spinning shurikens. Preferences are
+located under `Preferences > Appearance & Behaviour > Naruto Progress`.
 
 If you like the plugin, please consider rating it on the Marketplace or starring it on Github!
 
@@ -12,7 +13,8 @@ If you like the plugin, please consider rating it on the Marketplace or starring
 
 * ![Naruto](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/naruto.gif)
   Naruto ![Naruto](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/naruto_r.gif)
-* ![NarutoKyubi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/narutoKyubi.gif) Naruto with Kyubi
+* ![NarutoKyubi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/narutoKyubi.gif) Naruto
+  with Kyubi
   envelope ![NarutoKyubi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/narutoKyubi_r.gif)
 * ![Kurenai](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kurenai.gif)
   Kurenai ![Kurenai](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kurenai_r.gif)
@@ -35,10 +37,9 @@ If you like the plugin, please consider rating it on the Marketplace or starring
 
 ## Contributing
 
-Contributions are very welcome on this project! Contributions can take the form of bug reports, feature requests, shinobis requests or
-more!
+Contributions are very welcome on this project! Contributions can take the form of bug reports, feature requests,
+shinobis requests or more!
 
 ## Acknowledgements
 
-* The idea for this plugin came
-  from [Pokemon Progress Bar](https://plugins.jetbrains.com/plugin/15090-pokemon-progress)
+* The idea for this plugin came from [Pokemon Progress Bar](https://plugins.jetbrains.com/plugin/15090-pokemon-progress)
