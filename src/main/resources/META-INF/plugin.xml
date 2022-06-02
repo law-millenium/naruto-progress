@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>com.lawmillenium.narutoprogress</id>
+    <name>Naruto Progress</name>
+    <vendor url="https://github.com/law-millenium">Law Millenium</vendor>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable parentId="appearance"
+                                 instance="com.lawmillenium.intellij.plugins.narutoprogress.configuration.NarutoProgressConfigurable"
+                                 id="org.intellij.sdk.settings.AppSettingsConfigurable" dynamic="true" displayName="Naruto Progress"/>
+        <applicationService serviceImplementation="com.lawmillenium.intellij.plugins.narutoprogress.configuration.NarutoProgressState"/>
+        <postStartupActivity implementation="com.lawmillenium.intellij.plugins.narutoprogress.UpdateNotificationActivity"/>
+        <notificationGroup id="Naruto Progress Update" displayType="STICKY_BALLOON" icon="ShurikenIcons.SPINNING_SHURIKENS"/>
+    </extensions>
+    <applicationListeners>
+        <listener class="com.lawmillenium.intellij.plugins.narutoprogress.NarutoProgressListener" topic="com.intellij.ide.ui.LafManagerListener"/>
+        <listener class="com.lawmillenium.intellij.plugins.narutoprogress.NarutoProgressListener"
+                  topic="com.intellij.ide.plugins.DynamicPluginListener"/>
+    </applicationListeners>
+</idea-plugin>
