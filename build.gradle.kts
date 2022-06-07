@@ -103,11 +103,8 @@ tasks {
     }
 
     signPlugin {
-//        System.getenv("JETBRAINS_REPO_SIGNING_KEY")?.let { privateKey.set(it) }
         (File("certs/private.pem").readText(Charsets.UTF_8)).let { privateKey.set(it) }
-//        certificateChain = new File(System.getenv("JETBRAINS_REPO_SIGNING_KEY") ?: "certs/cert.txt").getText('UTF-8')
         System.getenv("JETBRAINS_REPO_SIGNING_KEY_PASSWORD")?.let { password.set(it) }
-//        System.getenv("JETBRAINS_REPO_CERTIFICATE_CHAIN")?.let { certificateChain.set(it) }
         (File("certs/chain.crt").readText(Charsets.UTF_8)).let { certificateChain.set(it) }
     }
 

@@ -10,10 +10,11 @@ import com.intellij.openapi.util.text.StringUtil;
 public enum Shinobi {
     NARUTO("naruto", -16, 0, 32, ShinobiGroup.KONOHA), //
     NARUTO_KYUBI("narutoKyubi", -16, -4, 32, ShinobiGroup.KONOHA), //
+    DRUNK_ROCK_LEE("drunkRockLee", -16, -2, 32, ShinobiGroup.KONOHA), //
     KURENAI("kurenai", -16, -3, 32, ShinobiGroup.KONOHA), //
     TOBIRAMA("tobirama", -16, 0, 32, ShinobiGroup.KONOHA), //
-    YUGITO("yugito", -16, 0, 32, ShinobiGroup.KUMO), //
     MADARA("madara", -16, 0, 32, ShinobiGroup.KONOHA), //
+    YUGITO("yugito", -16, 0, 32, ShinobiGroup.KUMO), //
     TOBI("tobi", -16, 0, 32, ShinobiGroup.AKATSUKI), //
     MISSINGNO("missingNo.", -20, 0, 35, true, null);
 
