@@ -110,6 +110,6 @@ tasks {
 
     publishPlugin {
         System.getenv("JETBRAINS_REPO_TOKEN")?.let { token.set(it) }
-        System.getenv("PLUGIN_DEPLOYMENT_CHANNELS")?.let { channels.set(it.split(",").map { s -> s.trim() }.toList()) }
+//        System.getenv("PLUGIN_DEPLOYMENT_CHANNELS")?.let { channels.set(it.split(",").map { s -> s.trim() }.toList()) }
     }
 }
