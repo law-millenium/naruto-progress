@@ -10,6 +10,7 @@ import com.intellij.openapi.util.text.StringUtil;
 public enum Shinobi {
     NARUTO("naruto", -16, 0, 32, ShinobiGroup.KONOHA), //
     NARUTO_KYUBI("narutoKyubi", -16, -2, 32, ShinobiGroup.KONOHA), //
+    NARUTO_SEXY_JUTSU("narutoSexyJutsu", -16, -0, 32, ShinobiGroup.KONOHA), //
     SAKURA("sakura", -16, 0, 32, ShinobiGroup.KONOHA), //
     DRUNK_ROCK_LEE("drunkRockLee", -16, -2, 32, ShinobiGroup.KONOHA), //
     TENTEN("tenten", -16, -2, 32, ShinobiGroup.KONOHA), //
