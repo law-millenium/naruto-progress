@@ -17,6 +17,7 @@ public enum Shinobi {
     DRUNK_ROCK_LEE("drunkRockLee", -16, -2, 32, ShinobiGroup.KONOHA), //
     TENTEN("tenten", -16, -2, 32, ShinobiGroup.KONOHA), //
     SHIKAMARU("shikamaru", -16, 0, 32, ShinobiGroup.KONOHA), //
+    CHOJI("choji", -16, 0, 32, ShinobiGroup.KONOHA), //
     SHISUI("shisui", -16, 0, 32, ShinobiGroup.KONOHA), //
     KAKASHI("kakashi", -16, 0, 32, ShinobiGroup.KONOHA), //
     KAKASHI_ANBU("kakashiAnbu", -16, 0, 32, ShinobiGroup.KONOHA), //
