@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
-    <g id="surface1" transform="rotate(45) translate(0 -8)">
+    <g id="surface1" transform="rotate(45) translate(3 -8)">
         <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
               d="M 8 5.359375 C 6.535156 5.359375 5.347656 6.535156 5.347656 7.988281 C 5.347656 9.441406 6.535156 10.617188 8 10.617188 C 9.464844 10.617188 10.652344 9.441406 10.652344 7.988281 C 10.652344 6.535156 9.464844 5.359375 8 5.359375 Z M 8 7.484375 C 8.28125 7.484375 8.507812 7.710938 8.507812 7.988281 C 8.507812 8.265625 8.28125 8.492188 8 8.492188 C 7.71875 8.492188 7.492188 8.265625 7.492188 7.988281 C 7.492188 7.710938 7.71875 7.484375 8 7.484375 Z M 8 7.484375 "/>
         <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
