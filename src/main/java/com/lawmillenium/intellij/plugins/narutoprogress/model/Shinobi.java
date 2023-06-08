@@ -1,38 +1,48 @@
 package com.lawmillenium.intellij.plugins.narutoprogress.model;
 
+import com.google.common.collect.ImmutableMap;
+import com.intellij.openapi.util.text.StringUtil;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
 
-import com.google.common.collect.ImmutableMap;
-import com.intellij.openapi.util.text.StringUtil;
-
 public enum Shinobi {
+    /* Naruto */
     NARUTO("naruto", -16, 0, 32, ShinobiGroup.KONOHA), //
     NARUTO_KYUBI("narutoKyubi", -16, -2, 32, ShinobiGroup.KONOHA), //
     NARUTO_SEXY_JUTSU("narutoSexyJutsu", -16, -0, 32, ShinobiGroup.KONOHA), //
     SASUKE("sasuke", -16, -0, 32, ShinobiGroup.KONOHA), //
     SASUKE_CURSED_SEAL("sasukeCursedSeal", -16, -0, 32, ShinobiGroup.KONOHA), //
     SAKURA("sakura", -16, 0, 32, ShinobiGroup.KONOHA), //
+    NEJI("neji", -16, -2, 32, ShinobiGroup.KONOHA), //
     DRUNK_ROCK_LEE("drunkRockLee", -16, -2, 32, ShinobiGroup.KONOHA), //
     TENTEN("tenten", -16, -2, 32, ShinobiGroup.KONOHA), //
     SHIKAMARU("shikamaru", -16, 0, 32, ShinobiGroup.KONOHA), //
     CHOJI("choji", -16, 0, 32, ShinobiGroup.KONOHA), //
+    HINATA("hinata", -16, 0, 32, ShinobiGroup.KONOHA), //
     SHISUI("shisui", -16, 0, 32, ShinobiGroup.KONOHA), //
     KAKASHI("kakashi", -16, 0, 32, ShinobiGroup.KONOHA), //
     KAKASHI_ANBU("kakashiAnbu", -16, 0, 32, ShinobiGroup.KONOHA), //
     KURENAI("kurenai", -16, -3, 32, ShinobiGroup.KONOHA), //
+    MINATO("minato", -16, -3, 32, ShinobiGroup.KONOHA), //
     TOBIRAMA("tobirama", -16, 0, 32, ShinobiGroup.KONOHA), //
-    MADARA("madara", -16, 0, 32, ShinobiGroup.KONOHA), //
     YUGITO("yugito", -16, 0, 32, ShinobiGroup.KUMO), //
     TOBI("tobi", -16, 0, 32, ShinobiGroup.AKATSUKI), //
     ITACHI("itachi", -16, -1, 32, ShinobiGroup.AKATSUKI), //
+    MADARA("madara", -16, 0, 32, ShinobiGroup.BINGO_BOOK), //
+    MADARA_RIKUDO("madaraRikudo", -16, 0, 32, ShinobiGroup.BINGO_BOOK), //
+
+    /* Boruto */
+    BORUTO("boruto", -16, -1, 32, ShinobiGroup.BORUTO), //
+    MITSUKI("mitsuki", -16, -1, 32, ShinobiGroup.BORUTO), //
     MISSINGNO("missingNo.", -20, 0, 35, true, null);
 
-    public static final Map<String, Shinobi> DEFAULT_SHINOBIS = Arrays.stream(values()).filter(shinobis -> !shinobis.secret).collect(
-        ImmutableMap.toImmutableMap(Shinobi::getName, Function.identity(), (u, v) -> {
-            throw new IllegalStateException(String.format("Duplicate shinobi name %s", u));
-        }));
+    public static final Map<String, Shinobi> DEFAULT_SHINOBIS = Arrays.stream(values()) //
+            .filter(shinobis -> !shinobis.secret) //
+            .collect(ImmutableMap.toImmutableMap(Shinobi::getName, Function.identity(), (u, v) -> {
+                throw new IllegalStateException(String.format("Duplicate shinobi name %s", u));
+            }));
 
     private final String name;
     private final int xShift;
