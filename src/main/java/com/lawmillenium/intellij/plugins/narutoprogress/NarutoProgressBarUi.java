@@ -5,8 +5,8 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
-import java.util.function.BooleanSupplier;
-import java.util.function.IntSupplier;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import com.intellij.openapi.ui.GraphicsConfig;
@@ -32,33 +32,38 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
     private final Supplier<Float> acceleration;
     private final Supplier<PaintTheme> theme;
     private final Supplier<ColorScheme> colorScheme;
-    private final BooleanSupplier transparencyOnIndeterminate;
-    private final BooleanSupplier transparencyOnDeterminate;
-    private final BooleanSupplier drawSprites;
-    private final BooleanSupplier addToolTips;
-    private final BooleanSupplier restrictMaxHeight;
-    private final IntSupplier maxHeight;
-    private final BooleanSupplier restrictMinHeight;
-    private final IntSupplier minHeight;
+    private final Supplier<Boolean> transparencyOnIndeterminate;
+    private final Supplier<Boolean> transparencyOnDeterminate;
+    private final Supplier<Boolean> drawSprites;
+    private final Supplier<Boolean> addToolTips;
+    private final Supplier<Boolean> restrictMaxHeight;
+    private final Supplier<Integer> maxHeight;
+    private final Supplier<Boolean> restrictMinHeight;
+    private final Supplier<Integer> minHeight;
     private ImageIcon iconForwardScaled = null;
     private ImageIcon iconReversedScaled = null;
     private volatile int pos = 0;
     private volatile float velocity = 0;
 
     public NarutoProgressBarUi(final Shinobi shinobi) {
-        this(shinobi, () -> NarutoProgressState.getInstance().initialVelocity, () -> NarutoProgressState.getInstance().acceleration,
-            () -> PaintThemes.getByIdOrDefault(NarutoProgressState.getInstance().theme),
-            () -> ColorSchemes.getByIdOrDefault(NarutoProgressState.getInstance().colorScheme),
-            () -> NarutoProgressState.getInstance().transparencyOnIndeterminate, () -> NarutoProgressState.getInstance().transparencyOnDeterminate,
-            () -> NarutoProgressState.getInstance().drawSprites, () -> NarutoProgressState.getInstance().addToolTips,
-            () -> NarutoProgressState.getInstance().restrictMaximumHeight, () -> NarutoProgressState.getInstance().maximumHeight,
-            () -> NarutoProgressState.getInstance().restrictMinimumHeight, () -> NarutoProgressState.getInstance().minimumHeight);
+        this(shinobi, safeGetFromState(progressState -> progressState.initialVelocity, 1.0f),
+            safeGetFromState(progressState -> progressState.acceleration, 0.4f),
+            safeGetFromState(progressState -> PaintThemes.getByIdOrDefault(progressState.theme), PaintThemes.getDefaultTheme()),
+            safeGetFromState(progressState -> ColorSchemes.getByIdOrDefault(progressState.colorScheme), ColorSchemes.getDefaultScheme()),
+            safeGetFromState(progressState -> progressState.transparencyOnIndeterminate, true),
+            safeGetFromState(progressState -> progressState.transparencyOnDeterminate, false),
+            safeGetFromState(progressState -> progressState.drawSprites, true), safeGetFromState(progressState -> progressState.addToolTips, true),
+            safeGetFromState(progressState -> progressState.restrictMaximumHeight, false),
+            safeGetFromState(progressState -> progressState.maximumHeight, 20),
+            safeGetFromState(progressState -> progressState.restrictMinimumHeight, false),
+            safeGetFromState(progressState -> progressState.minimumHeight, 20));
     }
 
     public NarutoProgressBarUi(final Shinobi shinobi, final Supplier<Float> initialVelocity, final Supplier<Float> acceleration,
-        final Supplier<PaintTheme> theme, final Supplier<ColorScheme> colorScheme, final BooleanSupplier transparencyOnIndeterminate,
-        final BooleanSupplier transparencyOnDeterminate, final BooleanSupplier drawSprites, final BooleanSupplier addToolTips,
-        final BooleanSupplier restrictMaxHeight, final IntSupplier maxHeight, final BooleanSupplier restrictMinHeight, final IntSupplier minHeight) {
+        final Supplier<PaintTheme> theme, final Supplier<ColorScheme> colorScheme, final Supplier<Boolean> transparencyOnIndeterminate,
+        final Supplier<Boolean> transparencyOnDeterminate, final Supplier<Boolean> drawSprites, final Supplier<Boolean> addToolTips,
+        final Supplier<Boolean> restrictMaxHeight, final Supplier<Integer> maxHeight, final Supplier<Boolean> restrictMinHeight,
+        final Supplier<Integer> minHeight) {
         super();
         this.shinobi = shinobi;
         this.initialVelocity = initialVelocity;
@@ -77,7 +82,7 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
 
         iconForward = ShinobiResourceLoader.getIcon(shinobi);
         iconReversed = ShinobiResourceLoader.getReversedIcon(shinobi);
-        if (restrictMaxHeight.getAsBoolean() || restrictMinHeight.getAsBoolean()) {
+        if (restrictMaxHeight.get() || restrictMinHeight.get()) {
             computeScaledIcons();
         }
     }
@@ -105,8 +110,8 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
 
     @Override
     public Dimension getPreferredSize(final JComponent jComponent) {
-        int height = restrictMaxHeight.getAsBoolean() ? Math.min(maxHeight.getAsInt(), shinobi.getHeight()) : shinobi.getHeight();
-        height = restrictMinHeight.getAsBoolean() ? Math.max(minHeight.getAsInt(), height) : height;
+        int height = restrictMaxHeight.get() ? Math.min(maxHeight.get(), shinobi.getHeight()) : shinobi.getHeight();
+        height = restrictMinHeight.get() ? Math.max(minHeight.get(), height) : height;
         return new Dimension(super.getPreferredSize(jComponent).width, JBUI.scale(height));
     }
 
@@ -195,7 +200,8 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
         return new RoundRectangle2D.Float(JBUIScale.scale(1f), JBUIScale.scale(1f), width - offset, height - offset, arcLength, arcLength);
     }
 
-    private void drawBackgroundPaint(final int width, final int height, final int progress, final Graphics2D graphics2D, final RoundRectangle2D rectangle) {
+    private void drawBackgroundPaint(final int width, final int height, final int progress, final Graphics2D graphics2D,
+        final RoundRectangle2D rectangle) {
         final Paint paint = graphics2D.getPaint();
         final Shape clip = graphics2D.getClip();
         final boolean movingRight = velocity >= 0;
@@ -204,8 +210,8 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
         graphics2D.setClip(movingRight ? new Rectangle(progress, height) : new Rectangle(progress, 0, progressBar.getWidth(), height));
         graphics2D.fill(rectangle);
 
-        if ((progressBar.isIndeterminate() && transparencyOnIndeterminate.getAsBoolean()) ||
-            (!progressBar.isIndeterminate() && transparencyOnDeterminate.getAsBoolean())) {
+        if ((progressBar.isIndeterminate() && transparencyOnIndeterminate.get()) ||
+            (!progressBar.isIndeterminate() && transparencyOnDeterminate.get())) {
             graphics2D.setPaint(getTransparencyPaint(progressBar.getBackground(), width, movingRight));
             graphics2D.setClip(movingRight ? new Rectangle(progress, height) : new Rectangle(progress, 0, progressBar.getWidth(), height));
             graphics2D.fill(rectangle);
@@ -216,7 +222,7 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
     }
 
     private void setToolTipText() {
-        if (addToolTips.getAsBoolean()) {
+        if (addToolTips.get()) {
             progressBar.setToolTipText(shinobi.getNameWithNumber());
         }
     }
@@ -234,14 +240,14 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
     }
 
     private void drawShinobiIcon(final int amountFull, final Graphics2D graphics2D, final Shape clip) {
-        if (!drawSprites.getAsBoolean()) {
+        if (!drawSprites.get()) {
             return;
         }
         final Shape previousClip = graphics2D.getClip();
 
         graphics2D.setClip(clip);
         final Icon icon;
-        if (restrictMaxHeight.getAsBoolean() || restrictMinHeight.getAsBoolean()) {
+        if (restrictMaxHeight.get() || restrictMinHeight.get()) {
             icon = velocity >= 0 ? iconForwardScaled : iconReversedScaled;
         } else {
             icon = velocity >= 0 ? iconForward : iconReversed;
@@ -282,11 +288,11 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
     }
 
     private int scaleToHeightRestrictions(final int value) {
-        if (restrictMaxHeight.getAsBoolean() && shinobi.getHeight() > maxHeight.getAsInt()) {
-            return Math.round(((float) maxHeight.getAsInt() / shinobi.getHeight()) * value);
+        if (restrictMaxHeight.get() && shinobi.getHeight() > maxHeight.get()) {
+            return Math.round(((float) maxHeight.get() / shinobi.getHeight()) * value);
         }
-        if (restrictMinHeight.getAsBoolean() && shinobi.getHeight() < minHeight.getAsInt()) {
-            return Math.round(((float) minHeight.getAsInt() / shinobi.getHeight()) * value);
+        if (restrictMinHeight.get() && shinobi.getHeight() < minHeight.get()) {
+            return Math.round(((float) minHeight.get() / shinobi.getHeight()) * value);
         }
         return value;
     }
@@ -294,5 +300,9 @@ public class NarutoProgressBarUi extends BasicProgressBarUI {
     private void resetPositionAndVelocity() {
         velocity = 1;
         pos = 0;
+    }
+
+    private static <T> Supplier<T> safeGetFromState(final Function<NarutoProgressState, T> getter, final T defaultIfStateNull) {
+        return () -> Optional.ofNullable(NarutoProgressState.getInstance()).map(getter).orElse(defaultIfStateNull);
     }
 }
