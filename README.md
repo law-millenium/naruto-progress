@@ -17,14 +17,31 @@ or [starring it on Github](https://github.com/law-millenium/naruto-progress)!
 * ![NarutoKyubi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/narutoKyubi.gif) Naruto
   with Kyubi
   envelope ![NarutoKyubi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/narutoKyubi_r.gif)
+* ![NarutoSexyJutsu](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/narutoSexyJutsu.gif) 
+  Naruto in sexy jutsu mode
+  ![NarutoSexyJutsu](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/narutoSexyJutsu_r.gif)
+* ![Sasuke](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sasuke.gif)
+  Sasuke
+  ![Sasuke](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sasuke_r.gif)
+* ![SasukeCursedSeal](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sasukeCursedSeal.gif)
+  Sasuke with cursed seal
+  ![SasukeCursedSeal](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sasukeCursedSeal_r.gif)
 * ![Sakura](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sakura.gif) 
   Sakura ![Sakura](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sakura_r.gif)
 * ![DrunkRockLee](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/drunkRockLee.gif)
   Drunk Rock Lee ![DrunkRockLee](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/drunkRockLee_r.gif)
 * ![Tenten](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tenten.gif)
   Tenten ![Tenten](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tenten_r.gif)
+* ![Shikamaru](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/shikamaru.gif)
+  Shikamaru ![Shikamaru](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/shikamaru_r.gif)
+* ![Choji](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/choji.gif)
+  Choji ![Choji](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/choji_r.gif)
 * ![Shisui](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/shisui.gif)
   Shisui ![Shisui](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/shisui_r.gif)
+* ![Kakashi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kakashi.gif)
+  Kakashi ![Kakashi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kakashi_r.gif)
+* ![KakashiAnbu](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kakashiAnbu.gif)
+  KakashiAnbu ![KakashiAnbu](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kakashiAnbu_r.gif)
 * ![Kurenai](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kurenai.gif)
   Kurenai ![Kurenai](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kurenai_r.gif)
 * ![Tobirama](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tobirama.gif)
