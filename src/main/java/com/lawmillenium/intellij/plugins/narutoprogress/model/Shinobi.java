@@ -10,10 +10,17 @@ import com.intellij.openapi.util.text.StringUtil;
 public enum Shinobi {
     NARUTO("naruto", -16, 0, 32, ShinobiGroup.KONOHA), //
     NARUTO_KYUBI("narutoKyubi", -16, -2, 32, ShinobiGroup.KONOHA), //
+    NARUTO_SEXY_JUTSU("narutoSexyJutsu", -16, -0, 32, ShinobiGroup.KONOHA), //
+    SASUKE("sasuke", -16, -0, 32, ShinobiGroup.KONOHA), //
+    SASUKE_CURSED_SEAL("sasukeCursedSeal", -16, -0, 32, ShinobiGroup.KONOHA), //
     SAKURA("sakura", -16, 0, 32, ShinobiGroup.KONOHA), //
     DRUNK_ROCK_LEE("drunkRockLee", -16, -2, 32, ShinobiGroup.KONOHA), //
     TENTEN("tenten", -16, -2, 32, ShinobiGroup.KONOHA), //
+    SHIKAMARU("shikamaru", -16, 0, 32, ShinobiGroup.KONOHA), //
+    CHOJI("choji", -16, 0, 32, ShinobiGroup.KONOHA), //
     SHISUI("shisui", -16, 0, 32, ShinobiGroup.KONOHA), //
+    KAKASHI("kakashi", -16, 0, 32, ShinobiGroup.KONOHA), //
+    KAKASHI_ANBU("kakashiAnbu", -16, 0, 32, ShinobiGroup.KONOHA), //
     KURENAI("kurenai", -16, -3, 32, ShinobiGroup.KONOHA), //
     TOBIRAMA("tobirama", -16, 0, 32, ShinobiGroup.KONOHA), //
     MADARA("madara", -16, 0, 32, ShinobiGroup.KONOHA), //

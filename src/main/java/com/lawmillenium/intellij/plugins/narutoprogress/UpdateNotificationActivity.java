@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class UpdateNotificationActivity implements StartupActivity.DumbAware {
     private static final String PLUGIN_ID = "com.lawmillenium.narutoprogress";
-    private static final String NOTIFICATION_GROUP = "Shinobi Progress Update";
+    private static final String NOTIFICATION_GROUP = "Naruto Progress Update";
 
     public static IdeaPluginDescriptor getPluginDescriptor() {
         return PluginManagerCore.getPlugin(PluginId.getId(PLUGIN_ID));
@@ -44,9 +44,11 @@ public class UpdateNotificationActivity implements StartupActivity.DumbAware {
 
     @SuppressWarnings("DialogTitleCapitalization")
     private static void sendNotification(final Project project, final String version) {
-        final Notification notification = NotificationGroupManager.getInstance().getNotificationGroup(NOTIFICATION_GROUP).createNotification(
-            "You're now using version " + version +
-                " of <a href=\"https://github.com/lawmillenium/naruto-progress\">Naruto Progress</a>! \uD83C\uDF89", NotificationType.INFORMATION);
+        String notificationMessage = "You're now using version " + version +
+            " of <a href=\"https://github.com/lawmillenium/naruto-progress\">Naruto Progress</a>! \uD83C\uDF89";
+        final Notification notification = NotificationGroupManager.getInstance() //
+            .getNotificationGroup(NOTIFICATION_GROUP) //
+            .createNotification(notificationMessage, NotificationType.INFORMATION);
         notification.setIcon(ShurikenIcons.SPINNING_SHURIKENS);
         notification.setListener(new NotificationListener.UrlOpeningListener(false));
         notification.addAction(new DumbAwareAction("Configuration...") {
