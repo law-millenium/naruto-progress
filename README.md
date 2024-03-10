@@ -28,7 +28,9 @@ or [starring it on Github](https://github.com/law-millenium/naruto-progress)!
   ![SasukeCursedSeal](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sasukeCursedSeal_r.gif)
 * ![Sakura](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sakura.gif) 
   Sakura ![Sakura](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/sakura_r.gif)
-* ![DrunkRockLee](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/drunkRockLee.gif)
+* ![Neji](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/neji.gif)
+  Neji ![Neji](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/neji_r.gif)
+* * ![DrunkRockLee](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/drunkRockLee.gif)
   Drunk Rock Lee ![DrunkRockLee](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/drunkRockLee_r.gif)
 * ![Tenten](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tenten.gif)
   Tenten ![Tenten](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tenten_r.gif)
@@ -36,6 +38,8 @@ or [starring it on Github](https://github.com/law-millenium/naruto-progress)!
   Shikamaru ![Shikamaru](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/shikamaru_r.gif)
 * ![Choji](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/choji.gif)
   Choji ![Choji](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/choji_r.gif)
+* ![Hinata](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/hinata.gif)
+  Hinata ![Hinata](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/hinata_r.gif)
 * ![Shisui](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/shisui.gif)
   Shisui ![Shisui](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/shisui_r.gif)
 * ![Kakashi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kakashi.gif)
@@ -44,10 +48,10 @@ or [starring it on Github](https://github.com/law-millenium/naruto-progress)!
   KakashiAnbu ![KakashiAnbu](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kakashiAnbu_r.gif)
 * ![Kurenai](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kurenai.gif)
   Kurenai ![Kurenai](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/kurenai_r.gif)
+* ![Minato](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/minato.gif)
+  Minato ![Minato](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/minato_r.gif)
 * ![Tobirama](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tobirama.gif)
   Tobirama ![Tobirama](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tobirama_r.gif)
-* ![Madara](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/madara.gif)
-  Madara ![Madara](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/madara_r.gif)
 
 ### Kumo
 
@@ -60,6 +64,18 @@ or [starring it on Github](https://github.com/law-millenium/naruto-progress)!
   Tobi ![Tobi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/tobi_r.gif)
 * ![Itachi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/itachi.gif)
   Itachi ![Itachi](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/itachi_r.gif)
+
+### Bingo Book
+* ![Madara](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/madara.gif)
+  Madara ![Madara](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/madara_r.gif)
+* ![MadaraRikudo](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/madaraRikudo.gif)
+  Madara in Rikudo mode ![MadaraRikudo](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/madaraRikudo_r.gif)
+
+### Boruto
+* ![Boruto](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/boruto.gif)
+  Boruto ![Boruto](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/boruto_r.gif)
+* ![Mitsuki](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/mitsuki.gif)
+  Mitsuki ![Mitsuki](src/main/resources/com/lawmillenium/intellij/plugins/narutoprogress/sprites/mitsuki_r.gif)
 
 [comment]: <> (end-included-shinobis)
 
