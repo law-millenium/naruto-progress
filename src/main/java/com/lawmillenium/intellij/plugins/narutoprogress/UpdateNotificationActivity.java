@@ -45,7 +45,7 @@ public class UpdateNotificationActivity implements StartupActivity.DumbAware {
     @SuppressWarnings("DialogTitleCapitalization")
     private static void sendNotification(final Project project, final String version) {
         String notificationMessage = "You're now using version " + version +
-            " of <a href=\"https://github.com/lawmillenium/naruto-progress\">Naruto Progress</a>! \uD83C\uDF89";
+            " of <a href=\"https://github.com/law-millenium/naruto-progress\">Naruto Progress</a>! \uD83C\uDF89";
         final Notification notification = NotificationGroupManager.getInstance() //
             .getNotificationGroup(NOTIFICATION_GROUP) //
             .createNotification(notificationMessage, NotificationType.INFORMATION);
