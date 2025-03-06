@@ -31,8 +31,9 @@ intellij {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 tasks {
@@ -58,9 +59,9 @@ tasks {
                 if (dir.exists() && dir.isDirectory && dir.canRead()) {
                     val strb = StringBuilder()
                     dir.listFiles()
-                            ?.filter { it.isFile }
-                            ?.filter { it.name.endsWith(".csv") }
-                            ?.forEach { strb.append(it.name).append("\n") }
+                        ?.filter { it.isFile }
+                        ?.filter { it.name.endsWith(".csv") }
+                        ?.forEach { strb.append(it.name).append("\n") }
                     val index = File(dir, ".cscheme.index")
                     index.delete()
                     index.createNewFile()
@@ -98,8 +99,12 @@ tasks {
 
     runPluginVerifier {
         ideVersions.set(pluginVerifierIdeVersions.split(",").map { it.trim() }.toList())
-        failureLevel.set(listOf(FailureLevel.COMPATIBILITY_PROBLEMS,
-                FailureLevel.NOT_DYNAMIC))
+        failureLevel.set(
+            listOf(
+                FailureLevel.COMPATIBILITY_PROBLEMS,
+                FailureLevel.NOT_DYNAMIC
+            )
+        )
     }
 
     signPlugin {
