@@ -5,11 +5,10 @@ val name: String by project
 val changenotesFile: String by project
 val descriptionFile: String by project
 val ideaVersion: String by project
-val javaVersion: String by project
 val pluginVerifierIdeVersions: String by project
 
 plugins {
-    id("org.jetbrains.intellij") version "1.4.0"
+    id("org.jetbrains.intellij") version "1.17.3"
     java
 }
 
@@ -31,8 +30,8 @@ intellij {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 tasks {
