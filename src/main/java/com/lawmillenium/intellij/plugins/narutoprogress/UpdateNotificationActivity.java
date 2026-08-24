@@ -1,12 +1,10 @@
 package com.lawmillenium.intellij.plugins.narutoprogress;
 
-import java.util.Objects;
-
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
 import com.intellij.ide.plugins.PluginManagerCore;
+import com.intellij.notification.BrowseNotificationAction;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationGroupManager;
-import com.intellij.notification.NotificationListener;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.extensions.PluginId;
@@ -18,6 +16,8 @@ import com.lawmillenium.intellij.plugins.narutoprogress.configuration.NarutoProg
 import com.lawmillenium.intellij.plugins.narutoprogress.configuration.NarutoProgressState;
 import icons.ShurikenIcons;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class UpdateNotificationActivity implements StartupActivity.DumbAware {
     private static final String PLUGIN_ID = "com.lawmillenium.narutoprogress";
@@ -44,29 +44,36 @@ public class UpdateNotificationActivity implements StartupActivity.DumbAware {
 
     @SuppressWarnings("DialogTitleCapitalization")
     private static void sendNotification(final Project project, final String version) {
-        String notificationMessage = "You're now using version " + version +
-            " of <a href=\"https://github.com/law-millenium/naruto-progress\">Naruto Progress</a>! \uD83C\uDF89";
-        final Notification notification = NotificationGroupManager.getInstance() //
-            .getNotificationGroup(NOTIFICATION_GROUP) //
-            .createNotification(notificationMessage, NotificationType.INFORMATION);
-        notification.setIcon(ShurikenIcons.SPINNING_SHURIKENS);
-        notification.setListener(new NotificationListener.UrlOpeningListener(false));
-        notification.addAction(new DumbAwareAction("Configuration...") {
-            @Override
-            public void actionPerformed(@NotNull final AnActionEvent e) {
-                ShowSettingsUtil.getInstance().showSettingsDialog(project, NarutoProgressConfigurable.class);
-            }
-        }).addAction(new DumbAwareAction("Changenotes") {
-            @Override
-            public void actionPerformed(@NotNull final AnActionEvent e) {
+        String notificationMessage = "You're now using version " + version + " of Naruto Progress! \uD83C\uDF89";
 
-                new NarutoProgressChangenotesDialog(project).show();
-            }
-        }).addAction(new DumbAwareAction("Don't show again", "Disable this notification in the future", null) {
-            @Override
-            public void actionPerformed(@NotNull final AnActionEvent e) {
-                NarutoProgressState.getInstance().showUpdateNotification = false;
-            }
-        }).notify(project);
+        final Notification notification = NotificationGroupManager.getInstance()
+                .getNotificationGroup(NOTIFICATION_GROUP)
+                .createNotification(notificationMessage, NotificationType.INFORMATION);
+
+        notification.setIcon(ShurikenIcons.SPINNING_SHURIKENS);
+
+        notification.addAction(new BrowseNotificationAction(
+                        "GitHub",
+                        "https://github.com/law-millenium/naruto-progress"))
+                .addAction(new DumbAwareAction("Configuration...") {
+                    @Override
+                    public void actionPerformed(@NotNull final AnActionEvent e) {
+                        ShowSettingsUtil.getInstance().showSettingsDialog(project, NarutoProgressConfigurable.class);
+                    }
+                })
+                .addAction(new DumbAwareAction("Changenotes") {
+                    @Override
+                    public void actionPerformed(@NotNull final AnActionEvent e) {
+
+                        new NarutoProgressChangenotesDialog(project).show();
+                    }
+                })
+                .addAction(new DumbAwareAction("Don't show again", "Disable this notification in the future", null) {
+                    @Override
+                    public void actionPerformed(@NotNull final AnActionEvent e) {
+                        NarutoProgressState.getInstance().showUpdateNotification = false;
+                    }
+                })
+                .notify(project);
     }
 }

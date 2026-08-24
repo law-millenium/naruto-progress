@@ -1,13 +1,5 @@
 package com.lawmillenium.intellij.plugins.narutoprogress;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.lang.reflect.Field;
-import java.util.Objects;
-import java.util.Optional;
-
-import com.intellij.ide.ui.laf.darcula.DarculaLaf;
 import com.intellij.ide.ui.laf.darcula.ui.DarculaTextBorder;
 import com.intellij.mock.MockApplication;
 import com.intellij.openapi.Disposable;
@@ -16,6 +8,7 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.LabeledComponent;
 import com.intellij.ui.components.fields.IntegerField;
+import com.intellij.ui.scale.JBUIScale;
 import com.intellij.util.ReflectionUtil;
 import com.lawmillenium.intellij.plugins.narutoprogress.configuration.NarutoProgressState;
 import com.lawmillenium.intellij.plugins.narutoprogress.model.Shinobi;
@@ -23,6 +16,13 @@ import com.lawmillenium.intellij.plugins.narutoprogress.theme.ColorScheme;
 import com.lawmillenium.intellij.plugins.narutoprogress.theme.ColorSchemes;
 import com.lawmillenium.intellij.plugins.narutoprogress.theme.PaintTheme;
 import com.lawmillenium.intellij.plugins.narutoprogress.theme.PaintThemes;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.lang.reflect.Field;
+import java.util.Objects;
+import java.util.Optional;
 
 public class TestProgressBar {
     private static final int MAX_SHIFT_VALUE = 900;
@@ -40,15 +40,11 @@ public class TestProgressBar {
     private int originalHeight = 20;
 
     @SuppressWarnings("FieldCanBeLocal")
-    private final boolean useDarkMode = true;
-
-    @SuppressWarnings("FieldCanBeLocal")
     private final Shinobi target = null;
 
     @SuppressWarnings("ConstantConditions")
     public TestProgressBar() {
         setUpMockApplication();
-        setLookAndFeel();
         updateSelectedShinobi(Optional.ofNullable(target).orElseGet(ShinobiPicker::get));
         initializeFrame();
         addShutdownHook();
@@ -62,18 +58,8 @@ public class TestProgressBar {
         final MockApplication application = MockApplication.setUp(parent);
         application.registerService(NarutoProgressState.class, state);
         ApplicationManager.setApplication(application, parent);
-    }
-
-    private void setLookAndFeel() {
-        if (useDarkMode) {
-            final DarculaLaf darkMode = new DarculaLaf();
-            try {
-                UIManager.setLookAndFeel(darkMode);
-            } catch (Exception e) {
-                System.out.println("unable to set look and feel");
-                e.printStackTrace();
-            }
-        }
+        //noinspection UnstableApiUsage
+        JBUIScale.DEBUG_USER_SCALE_FACTOR.setValue(1.0f);
     }
 
     private void initializeFrame() {
@@ -173,7 +159,10 @@ public class TestProgressBar {
         buttonPanel.setLayout(new GridLayout(1, 2));
 
         final JButton updateButton = new JButton("Update");
-        updateButton.addActionListener(this::updatePositionAndUI);
+        updateButton.addActionListener(e -> {
+            printIfShiftUpdated();
+            updatePositionAndUI(e);
+        });
 
         final JButton resetButton = new JButton("Reset");
         resetButton.addActionListener(e -> {
@@ -232,7 +221,7 @@ public class TestProgressBar {
         try {
             field.validateContent();
         } catch (final ConfigurationException ex) {
-            field.setToolTipText(ex.getMessage());
+            field.setToolTipText(ex.getMessageHtml().toString());
             return;
         }
         field.setToolTipText(null);

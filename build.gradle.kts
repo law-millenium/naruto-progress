@@ -8,7 +8,7 @@ val ideaVersion: String by project
 val pluginVerifierIdeVersions: String by project
 
 plugins {
-    id("org.jetbrains.intellij") version "1.17.3"
+    id("org.jetbrains.intellij") version "1.17.4"
     java
 }
 
@@ -17,8 +17,10 @@ repositories {
 }
 
 dependencies {
-    testImplementation("junit", "junit", "4.12")
-    testImplementation("com.sksamuel.scrimage", "scrimage-core", "4.0.22")
+    testImplementation(platform("org.junit:junit-bom:6.0.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("com.sksamuel.scrimage", "scrimage-core", "4.3.5")
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -35,13 +37,6 @@ java {
 }
 
 tasks {
-    register("genDocs", JavaExec::class) {
-        group = "naruto-progress"
-        description = "generate documentation"
-        classpath = java.sourceSets["test"].runtimeClasspath
-        mainClass.set("com.lawmillenium.intellij.plugins.narutoprogress.DocumentationGenerator")
-    }
-
     register("testProgressBar", JavaExec::class) {
         group = "naruto-progress"
         description = "test progress bar"
@@ -57,9 +52,9 @@ tasks {
                 if (dir.exists() && dir.isDirectory && dir.canRead()) {
                     val strb = StringBuilder()
                     dir.listFiles()
-                            ?.filter { it.isFile }
-                            ?.filter { it.name.endsWith(".csv") }
-                            ?.forEach { strb.append(it.name).append("\n") }
+                        ?.filter { it.isFile }
+                        ?.filter { it.name.endsWith(".csv") }
+                        ?.forEach { strb.append(it.name).append("\n") }
                     val index = File(dir, ".cscheme.index")
                     index.delete()
                     index.createNewFile()
@@ -97,8 +92,12 @@ tasks {
 
     runPluginVerifier {
         ideVersions.set(pluginVerifierIdeVersions.split(",").map { it.trim() }.toList())
-        failureLevel.set(listOf(FailureLevel.COMPATIBILITY_PROBLEMS,
-                FailureLevel.NOT_DYNAMIC))
+        failureLevel.set(
+            listOf(
+                FailureLevel.COMPATIBILITY_PROBLEMS,
+                FailureLevel.NOT_DYNAMIC
+            )
+        )
     }
 
     signPlugin {

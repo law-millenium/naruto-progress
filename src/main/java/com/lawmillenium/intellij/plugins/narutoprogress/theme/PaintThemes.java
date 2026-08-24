@@ -14,8 +14,12 @@ public final class PaintThemes {
     static {
         DEFAULT_THEME = new SmoothTheme("smooth", "Smooth");
 
-        final PaintTheme[] themes = { DEFAULT_THEME, new FlatTheme("flat", "Flat", BackgroundColor::getColor), new FlatTheme("flat_light", "Flat (Light)",
-            BackgroundColor::getColorLight), new FlatTheme("flat_dark", "Flat (Dark)", BackgroundColor::getColorDark), };
+        final PaintTheme[] themes = {
+                DEFAULT_THEME,
+                new FlatTheme("flat", "Flat", BackgroundColor::color),
+                new FlatTheme("flat_light", "Flat (Light)", BackgroundColor::colorLight),
+                new FlatTheme("flat_dark", "Flat (Dark)", BackgroundColor::colorDark)
+        };
 
         ALL_THEMES = Arrays.stream(themes).collect(toImmutableMap(PaintTheme::getId, identity()));
     }

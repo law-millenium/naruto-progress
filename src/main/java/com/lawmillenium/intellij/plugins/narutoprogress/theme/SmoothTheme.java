@@ -16,7 +16,7 @@ public class SmoothTheme extends PaintTheme {
     private static Paint getPaintSingleColor(final Shinobi shinobi, final ColorScheme colorScheme, final int startY, final int height) {
         final BackgroundColor backgroundColor = colorScheme.get(shinobi);
         return new LinearGradientPaint(0, (float) startY + JBUIScale.scale(2f), 0, (float) startY + (float) height - JBUIScale.scale(2f),
-            new float[]{ 0f, ONE_HALF, 1f }, new Color[]{ backgroundColor.getColorLight(), backgroundColor.getColor(), backgroundColor.getColorDark() });
+            new float[]{ 0f, ONE_HALF, 1f }, new Color[]{ backgroundColor.colorLight(), backgroundColor.color(), backgroundColor.colorDark() });
     }
 
     @Override
