@@ -88,12 +88,12 @@ public enum Shinobi {
         return name;
     }
 
-    public String getNameWithNumber() {
+    public String getCapitalizedName() {
         return StringUtil.capitalizeWords(name, true);
     }
 
     @Override
     public String toString() {
-        return getNameWithNumber();
+        return getCapitalizedName();
     }
 }

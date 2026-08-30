@@ -25,20 +25,24 @@ public class NarutoProgressConfigurable implements Configurable {
     @Override
     public boolean isModified() {
         final NarutoProgressState state = NarutoProgressState.getInstance();
-        return component != null && (!state.enabledShinobisNames.equals(component.getEnabledIdMap()) || !Objects.equals(state.theme,
-            component.getTheme().getItemAt(component.getTheme().getSelectedIndex()).getId()) || !Objects.equals(state.colorScheme,
-            component.getColorScheme().getItemAt(component.getColorScheme().getSelectedIndex()).getId()) ||
-            state.drawSprites != component.getDrawSprites().isSelected() || state.addToolTips != component.getAddToolTips().isSelected() ||
-            state.transparencyOnIndeterminate != component.getIndeterminateTransparency().isSelected() ||
-            state.transparencyOnDeterminate != component.getDeterminateTransparency().isSelected() ||
-            state.initialVelocity != component.getInitialVelocity().getValue() / HUNDRED_PERCENT ||
-            state.acceleration != component.getAcceleration().getValue() / HUNDRED_PERCENT ||
-            NarutoProgressState.getInstance().isReplaceLoaderIcon() != component.getReplaceLoaderIcon().isSelected() ||
-            state.showUpdateNotification != component.getShowUpdateNotification().isSelected() ||
-            state.restrictMaximumHeight != component.getRestrictMaxHeight().isSelected() ||
-            state.maximumHeight != component.getMaxHeight().getValue() ||
-            state.restrictMinimumHeight != component.getRestrictMinHeight().isSelected() ||
-            state.minimumHeight != component.getMinHeight().getValue());
+        return component != null && (!state.enabledShinobisNames.equals(component.getEnabledIdMap())
+                || !Objects.equals(state.theme,
+                component.getTheme().getItemAt(component.getTheme().getSelectedIndex()).getId())
+                || !Objects.equals(state.colorScheme,
+                component.getColorScheme().getItemAt(component.getColorScheme().getSelectedIndex()).getId())
+                || state.drawSprites != component.getDrawSprites().isSelected()
+                || state.addToolTips != component.getAddToolTips().isSelected()
+                || state.addIconToToolTips != component.getAddIconToToolTips().isSelected()
+                || state.transparencyOnIndeterminate != component.getIndeterminateTransparency().isSelected()
+                || state.transparencyOnDeterminate != component.getDeterminateTransparency().isSelected()
+                || state.initialVelocity != component.getInitialVelocity().getValue() / HUNDRED_PERCENT
+                || state.acceleration != component.getAcceleration().getValue() / HUNDRED_PERCENT
+                || state.isReplaceLoaderIcon() != component.getReplaceLoaderIcon().isSelected()
+                || state.showUpdateNotification != component.getShowUpdateNotification().isSelected()
+                || state.restrictMaximumHeight != component.getRestrictMaxHeight().isSelected()
+                || state.maximumHeight != component.getMaxHeight().getValue()
+                || state.restrictMinimumHeight != component.getRestrictMinHeight().isSelected()
+                || state.minimumHeight != component.getMinHeight().getValue());
     }
 
     @Override
@@ -49,6 +53,7 @@ public class NarutoProgressConfigurable implements Configurable {
         state.colorScheme = component.getColorScheme().getItemAt(component.getColorScheme().getSelectedIndex()).getId();
         state.drawSprites = component.getDrawSprites().isSelected();
         state.addToolTips = component.getAddToolTips().isSelected();
+        state.addIconToToolTips = component.getAddIconToToolTips().isSelected();
         state.transparencyOnIndeterminate = component.getIndeterminateTransparency().isSelected();
         state.transparencyOnDeterminate = component.getDeterminateTransparency().isSelected();
         state.initialVelocity = component.getInitialVelocity().getValue() / HUNDRED_PERCENT;

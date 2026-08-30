@@ -38,6 +38,7 @@ java {
 
 tasks {
     register("testProgressBar", JavaExec::class) {
+        jvmArgs("--add-opens=java.desktop/java.awt=ALL-UNNAMED", "--add-opens=java.desktop/javax.swing=ALL-UNNAMED")
         group = "naruto-progress"
         description = "test progress bar"
         classpath = java.sourceSets["test"].runtimeClasspath

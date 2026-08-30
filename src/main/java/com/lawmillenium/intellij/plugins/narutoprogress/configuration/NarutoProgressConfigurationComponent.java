@@ -53,6 +53,7 @@ public class NarutoProgressConfigurationComponent {
     private final JBCheckBox replaceLoaderIcon = new JBCheckBox("Replace loader icon with shuriken");
     private final JBCheckBox drawSprites = new JBCheckBox("Draw sprites");
     private final JBCheckBox addToolTips = new JBCheckBox("Add tool tips");
+    private final JBCheckBox addIconToToolTips = new JBCheckBox("Add icons to tool tips");
     private final JBCheckBox indeterminateTransparency = new JBCheckBox("Transparency on indeterminate");
     private final JBCheckBox determinateTransparency = new JBCheckBox("Transparency on determinate");
     private final JBCheckBox showUpdateNotification = new JBCheckBox("Show update notification");
@@ -129,7 +130,7 @@ public class NarutoProgressConfigurationComponent {
                 toggleCheckBoxesByShinobiGroup.put(shinobiGroup, shinobiGroupToggleCheckBox);
             }
 
-            final JBCheckBox checkBox = new JBCheckBox(shinobi.getNameWithNumber(), true);
+            final JBCheckBox checkBox = new JBCheckBox(shinobi.getCapitalizedName(), true);
             checkBox.addItemListener(itemEvent -> {
                 if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
                     numSelected.incrementAndGet();
@@ -234,9 +235,15 @@ public class NarutoProgressConfigurationComponent {
         drawSprites.setToolTipText("If disabled, progress bars will just show the background colors");
         checkboxPanel.add(indeterminateTransparency);
 
-        checkboxPanel.add(addToolTips);
-        addToolTips.setToolTipText("Whether or not to add a naruto tool tip (hover text) on the progress bars");
         checkboxPanel.add(determinateTransparency);
+        checkboxPanel.add(addToolTips);
+        addToolTips.setToolTipText("Whether or not to add a shinobi tooltip (hover text) on the progress bars");
+        addToolTips.addActionListener(a -> {
+            if (a.getID() == ActionEvent.ACTION_PERFORMED) {
+                addIconToToolTips.setEnabled(addToolTips.isSelected());
+            }
+        });
+        checkboxPanel.add(addIconToToolTips);
 
         replaceLoaderIcon.addActionListener(a -> {
             if (a.getID() == ActionEvent.ACTION_PERFORMED) {
@@ -254,14 +261,16 @@ public class NarutoProgressConfigurationComponent {
 
     void updateUi(final NarutoProgressState state) {
         if (state != null) {
-            Optional.ofNullable(UpdateNotificationActivity.getPluginDescriptor()).ifPresent(
-                desc -> title.setText("Naruto Progress " + desc.getVersion()));
+            Optional.ofNullable(UpdateNotificationActivity.getPluginDescriptor())
+                    .ifPresent(desc -> title.setText("Naruto Progress " + desc.getVersion()));
             initialVelocity.setValue((int) (state.initialVelocity * 100));
             acceleration.setValue((int) (state.acceleration * 100));
             theme.setSelectedItem(PaintThemes.getByIdOrDefault(state.theme));
             colorScheme.setSelectedItem(ColorSchemes.getByIdOrDefault(state.colorScheme));
             drawSprites.setSelected(state.drawSprites);
             addToolTips.setSelected(state.addToolTips);
+            addIconToToolTips.setSelected(state.addIconToToolTips);
+            addIconToToolTips.setEnabled(addToolTips.isSelected());
             indeterminateTransparency.setSelected(state.transparencyOnIndeterminate);
             determinateTransparency.setSelected(state.transparencyOnDeterminate);
             state.enabledShinobisNames.forEach((id, enabled) -> checkboxes.computeIfPresent(id, (p, check) -> {
@@ -291,6 +300,10 @@ public class NarutoProgressConfigurationComponent {
 
     public JBCheckBox getAddToolTips() {
         return addToolTips;
+    }
+
+    public JBCheckBox getAddIconToToolTips() {
+        return addIconToToolTips;
     }
 
     public JSlider getInitialVelocity() {
@@ -417,22 +430,33 @@ public class NarutoProgressConfigurationComponent {
     }
 
     private NarutoProgressBarUi createProgressBarUi() {
-        return new NarutoProgressBarUi(ShinobiPicker.get(), () -> initialVelocity.getValue() / HUNDRED_PERCENT,
-            () -> acceleration.getValue() / HUNDRED_PERCENT, () -> theme.getItemAt(theme.getSelectedIndex()),
-            () -> colorScheme.getItemAt(colorScheme.getSelectedIndex()), indeterminateTransparency::isSelected, determinateTransparency::isSelected,
-            drawSprites::isSelected, addToolTips::isSelected, restrictMaxHeight::isSelected, maxHeight::getValue, restrictMinHeight::isSelected,
-            minHeight::getValue);
+        return new NarutoProgressBarUi(
+                ShinobiPicker.get(),
+                () -> initialVelocity.getValue() / HUNDRED_PERCENT,
+                () -> acceleration.getValue() / HUNDRED_PERCENT,
+                () -> theme.getItemAt(theme.getSelectedIndex()),
+                () -> colorScheme.getItemAt(colorScheme.getSelectedIndex()),
+                indeterminateTransparency::isSelected,
+                determinateTransparency::isSelected,
+                drawSprites::isSelected,
+                addToolTips::isSelected,
+                addIconToToolTips::isSelected,
+                restrictMaxHeight::isSelected,
+                maxHeight::getValue,
+                restrictMinHeight::isSelected,
+                minHeight::getValue
+        );
     }
 
     private JPanel createIndeterminatePanel() {
         final JPanel indeterminatePanel = new JPanel();
         indeterminatePanel.setLayout(new GridLayout(2, 2));
         final LabeledComponent<JSlider> labeledInitVelocity = LabeledComponent.create(initialVelocity,
-            String.format("Indeterminate initial velocity (%d/%d)", initialVelocity.getValue(), initialVelocity.getMaximum()));
+                String.format("Indeterminate initial velocity (%d/%d)", initialVelocity.getValue(), initialVelocity.getMaximum()));
         indeterminatePanel.add(labeledInitVelocity);
         indeterminatePanel.add(new Spacer());
         final LabeledComponent<JSlider> labeledAccel = LabeledComponent.create(acceleration,
-            String.format("Indeterminate acceleration (%d/%d)", acceleration.getValue(), acceleration.getMaximum()));
+                String.format("Indeterminate acceleration (%d/%d)", acceleration.getValue(), acceleration.getMaximum()));
         indeterminatePanel.add(labeledAccel);
         final JButton resetIndeterminateButton = new JButton("Reset to defaults");
         resetIndeterminateButton.addActionListener(a -> {
@@ -442,9 +466,9 @@ public class NarutoProgressConfigurationComponent {
             }
         });
         initialVelocity.addChangeListener(e -> labeledInitVelocity.getLabel()
-            .setText(String.format("Indeterminate initial velocity (%d/%d)", initialVelocity.getValue(), initialVelocity.getMaximum())));
+                .setText(String.format("Indeterminate initial velocity (%d/%d)", initialVelocity.getValue(), initialVelocity.getMaximum())));
         acceleration.addChangeListener(e -> labeledAccel.getLabel()
-            .setText(String.format("Indeterminate acceleration (%d/%d)", acceleration.getValue(), acceleration.getMaximum())));
+                .setText(String.format("Indeterminate acceleration (%d/%d)", acceleration.getValue(), acceleration.getMaximum())));
         indeterminatePanel.add(resetIndeterminateButton);
         return indeterminatePanel;
     }

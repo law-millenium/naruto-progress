@@ -24,6 +24,12 @@ import java.lang.reflect.Field;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * must add <code>--add-opens=java.desktop/java.awt=ALL-UNNAMED --add-opens=java.desktop/javax.swing=ALL-UNNAMED</code>
+ * to JVM args to let reflection work.
+ * An IntelliJ run configuration exists for this in <code>.run/TestProgressBar.run.xml</code>, and a Gradle
+ * task also exists as <code>./gradlew testProgressBar</code>.
+ */
 public class TestProgressBar {
     private static final int MAX_SHIFT_VALUE = 900;
     private NarutoProgressState state;
@@ -243,14 +249,14 @@ public class TestProgressBar {
 
     private void printIfShiftUpdated() {
         if (shiftUpdated()) {
-            System.out.printf("%nUpdated shift for %s: %d, %d, %d%n", selectedShinobi.getNameWithNumber(), xShift.getValue(), yShift.getValue(),
-                height.getValue());
+            System.out.printf("%nUpdated shift for %s: %d, %d, %d%n", selectedShinobi.getCapitalizedName(), xShift.getValue(), yShift.getValue(),
+                    height.getValue());
         }
     }
 
     private boolean shiftUpdated() {
         return !Objects.equals(originalXShift, selectedShinobi.getXShift()) || !Objects.equals(originalYShift, selectedShinobi.getYShift()) ||
-            !Objects.equals(originalHeight, selectedShinobi.getHeight());
+                !Objects.equals(originalHeight, selectedShinobi.getHeight());
     }
 
     public static void main(final String[] args) {
